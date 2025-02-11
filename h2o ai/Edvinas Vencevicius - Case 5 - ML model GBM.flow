@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "cells": [
+    {
+      "type": "cs",
+      "input": "Edvinas Vencevicius - Case 5 - ML model GBM"
+    },
+    {
+      "type": "cs",
+      "input": "assist"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"duomenys-h2o.csv\"]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"duomenys-h2o.csv\"]\n  destination_frame: \"Key_Frame__duomenys_h2o.hex\"\n  parse_type: \"CSV\"\n  separator: 59\n  number_columns: 44\n  single_quotes: false\n  column_names: [\"﻿Addr State\",\"Application Type\",\"Collections 12 Mths Ex Med\",\"Debt Settlement Flag\",\"Delinq 2Yrs\",\"Disbursement Method\",\"Earliest Cr Line\",\"Emp Length\",\"Grade\",\"Hardship Flag\",\"Home Ownership\",\"Inq Last 6Mths\",\"Issue D\",\"Last Credit Pull D\",\"Last Pymnt D\",\"Loan Status\",\"Policy Code\",\"Purpose\",\"Sub Grade\",\"Table Names\",\"Term\",\"Verification Status\",\"Annual Inc\",\"Collection Recovery Fee\",\"Dti\",\"Funded Amnt\",\"Funded Amnt Inv\",\"Installment\",\"Int Rate\",\"Last Pymnt Amnt\",\"Loan Amnt\",\"Open Acc\",\"Pub Rec\",\"Pub Rec Bankruptcies\",\"Recoveries\",\"Revol Bal\",\"Revol Util\",\"Tax Liens\",\"Total Acc\",\"Total Pymnt\",\"Total Pymnt Inv\",\"Total Rec Int\",\"Total Rec Late Fee\",\"Total Rec Prncp\"]\n  column_types: [\"Enum\",\"Enum\",\"Numeric\",\"Enum\",\"Numeric\",\"Enum\",\"Time\",\"Enum\",\"Enum\",\"Enum\",\"Enum\",\"Numeric\",\"Time\",\"Time\",\"Time\",\"Enum\",\"Numeric\",\"Enum\",\"Enum\",\"Enum\",\"Enum\",\"Enum\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Enum\",\"Enum\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Enum\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\"]\n  delete_on_done: true\n  check_header: 1\n  chunk_size: 4194304\n  escapechar: undefined"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"Key_Frame__duomenys_h2o.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "assist buildModel, null, training_frame: \"Key_Frame__duomenys_h2o.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'gbm', {\"model_id\":\"gbm-d52b44ff-66b4-47a3-bf0e-f19135970b21\",\"training_frame\":\"Key_Frame__duomenys_h2o.hex\",\"nfolds\":10,\"response_column\":\"Loan Status\",\"ignored_columns\":[\"﻿Addr State\",\"Last Pymnt D\",\"Table Names\"],\"ignore_const_cols\":true,\"ntrees\":50,\"max_depth\":5,\"min_rows\":10,\"nbins\":20,\"seed\":-1,\"learn_rate\":0.4,\"sample_rate\":1,\"col_sample_rate\":1,\"score_each_iteration\":false,\"score_tree_interval\":0,\"fold_assignment\":\"AUTO\",\"balance_classes\":false,\"max_confusion_matrix_size\":20,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"learn_rate_annealing\":1,\"distribution\":\"AUTO\",\"huber_alpha\":0.9,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"AUTO\",\"monotone_constraints\":[],\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"keep_cross_validation_models\":true,\"keep_cross_validation_predictions\":false,\"keep_cross_validation_fold_assignment\":false,\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"col_sample_rate_change_per_level\":1,\"max_abs_leafnode_pred\":1.7976931348623157e+308,\"pred_noise_bandwidth\":0,\"calibrate_model\":false,\"calibration_method\":\"AUTO\",\"in_training_checkpoints_tree_interval\":1,\"check_constant_response\":true,\"auto_rebalance\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"gbm-d52b44ff-66b4-47a3-bf0e-f19135970b21\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'gbm', {\"model_id\":\"gbm-d52b44ff-66b4-47a3-bf0e-f19135970b21\",\"training_frame\":\"Key_Frame__duomenys_h2o.hex\",\"nfolds\":10,\"response_column\":\"Loan Status\",\"ignored_columns\":[\"﻿Addr State\",\"Last Pymnt D\",\"Table Names\"],\"ignore_const_cols\":true,\"ntrees\":100,\"max_depth\":5,\"min_rows\":10,\"nbins\":20,\"seed\":-1,\"learn_rate\":0.4,\"sample_rate\":1,\"col_sample_rate\":1,\"score_each_iteration\":false,\"score_tree_interval\":0,\"fold_assignment\":\"AUTO\",\"balance_classes\":false,\"max_confusion_matrix_size\":20,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"learn_rate_annealing\":1,\"distribution\":\"AUTO\",\"huber_alpha\":0.9,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"AUTO\",\"monotone_constraints\":[],\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"keep_cross_validation_models\":true,\"keep_cross_validation_predictions\":false,\"keep_cross_validation_fold_assignment\":false,\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"col_sample_rate_change_per_level\":1,\"max_abs_leafnode_pred\":1.7976931348623157e+308,\"pred_noise_bandwidth\":0,\"calibrate_model\":false,\"calibration_method\":\"AUTO\",\"in_training_checkpoints_tree_interval\":1,\"check_constant_response\":true,\"auto_rebalance\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"gbm-d52b44ff-66b4-47a3-bf0e-f19135970b21\""
+    }
+  ]
+}
